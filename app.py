@@ -6,6 +6,22 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 app.secret_key = "chave_secreta_123" #Protege a sessão do usuário, evitando que dados sejam modificados
 
+# GERAR SENHA BCRYPT
+def gerar_hash(senha_texto): #cria a função 'gerar_hash' que pega a 'senha_texto', a senha 123456
+    senha_bytes = senha_texto.encode('utf-8') #bcrypt nao trabalha com string, e sim com bytes | aqui ele transforma a senha comum em bytes usando a codificação UTF-8 que transforma caracteres em numeros que o computador entende
+    salt = bcrypt.gensalt() #gensalt() = generate salt | salt faz com que mesmo que dois users usem senhas iguais, tipo 123456, os hashes serão diferentes e não identicos. Assim, não é possível que alguém descubra o padrão entre as duas senhas iguais.
+    senha_hash = bcrypt.hashpw(senha_bytes, salt) #pega os bytes gerado + o salt gerado e transforma na senha em hash | hashpw = hash password
+    return senha_hash.decode('utf-8') #retorna o valor em bytes(linguegem que o pc entende) em uma string (texto comum que nós entendemos) | processo inverso do encode
+    #pq precisa do decode? | Pq o banco espera receber um 'VARCHAR', uma string de texto, não um objeto bytes do Python, então nós precisamos converter os bytes para uma string para que o banco de dados consiga receber esse dado
+
+def verificar_senha(senha_digitada, hash_armazenado): #serve pra verificar a senha que foi digitada na hora do login, pra ver se a senha digitada bate com a senha hash
+    if not hash_armazenado: #se não for a senha hash 
+        return False #vai dar erro, login negado
+    senha_bytes = senha_digitada.encode('utf-8') #converte a senha digitada na hora do login para bytes
+    hash_bytes = hash_armazenado.encode('utf-8') #converte a senha que está armazenada para bytes (pq ela veio do banco de dados como texto na hora de verificar)
+    return bcrypt.checkpw(senha_bytes, hash_bytes) #o checkpw (check password) pega a senha digitada, extrai o salt do hash_armazenado e cria um novo hash para a senha digitada usando esse mesmo salt, e comparar os dois hashs
+        #se os hashs baterem, vai retornar true (senha correta), se não retorna false (senha incorreta)
+        
 # CONEXÃO
 def get_db():
     return mysql.connector.connect(

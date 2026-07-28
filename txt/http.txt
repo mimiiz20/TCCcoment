@@ -1,0 +1,8 @@
+200 - OK
+Operação relaizada com sucesso
+
+400 - BAD REQUEST
+Dados não foram enviados ou esta incorreto
+
+404 - NOT FOUND
+Produto não encontrado
