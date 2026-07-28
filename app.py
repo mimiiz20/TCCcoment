@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify, redirect, session, url_for
 import mysql.connector
 import os
+import bcrypt
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -27,7 +28,7 @@ def get_db():
     return mysql.connector.connect(
         host='127.0.0.1',
         user='root',
-        password='Mica@2009',
+        password='',
         database='almoxarifado',
     )
 
@@ -52,23 +53,31 @@ def login():
     conexao = get_db() # Cria a conexão com o banco
     cursor = conexao.cursor() # Cria o cursor para executar as consultas
 
+    print("Email:", email)
+    print("Senha:", senha)
+
     cursor.execute("""
         SELECT * FROM usuarios
-        WHERE email = %s AND senha = %s
-    """, (email, senha)) # O objetivo é encontrar um usuário com aquele e-mail e senha
+        WHERE email = %s 
+    """, (email,)) # O objetivo é encontrar um usuário com aquele e-mail e senha
 
     user = cursor.fetchone() # Busca o primeiro resultado da consulta
 
     cursor.close() # Fecha o cursor
     conexao.close() # Fecha a conexão com o banco
 
-    if user: # Se o usuário for encontrado
-        session['usuario'] = user[1] 
-        session['tipo'] = user[4]
-        session['email'] = user[2] # Salva as informações da sessão
-        return redirect('/tabela') # Redireciona para a página de tabela
+    if user and verificar_senha(senha, user[4]): #se o usuario existe e se a senha enviada bater com o hash | user[4] é a posição que o hash ta na coluna
+        session['usuario'] = user[1] #guarda o usuario na sessão
+        session['email'] = user[2] #guarda o email na sessão
+        session['tipo'] = user[3] #guarda o tipo na sessão
+        return redirect('/tabela') #redireciona para a página /tabela | redirect = redireciona para outra URL
 
-    return "Email ou senha inválidos" # Se não, retorna uma mensagem de erro
+    return render_template ('login_erro.html', erro=True)
+
+#LOGIN INCORRETO
+@app.route('/login_erro.html') #rota do erro de login
+def login_erro(): #executa a função do erro de login
+    return render_template('login_erro.html') #retorna a página login_erro
 
 # LOGOUT
 @app.route('/logout') # Inicia a rota de logout, que limpa a sessão do usuário

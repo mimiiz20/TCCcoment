@@ -109,48 +109,49 @@ body {
 
 /* CONFIGURAÇÕES PARA TELA HOME */
 
-.menu-topbar {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
-    position: absolute;
-    left: 48%;
-    transform: translateX(-50%);
+.menu-topbar { /*Organiza os links do menu, e ele tem um ponto pois ele esta procurando uma classe*/
+    display: flex; /*Coloca as legendas lado a lado*/
+    gap: 20px; /*Cria um espaço de 15 pixels*/
+    margin-top: 10px; 
+    position: absolute; /*Posiciona a div exatamente na página*/
+    left: 48%; /*Leva o começo da div para aproximadamente no meio da tela*/
+    transform: translateX(-50%); /*Move metade da largura da própria div para a esquerda*/
+    margin-left: 40px
+  }
+
+.menu-item { /*Procura todos os itens que estão dentro da div do menu*/
+    color: white; 
+    text-decoration: none; /*Isso serve para tirar o sublinhado padrão do HTML para links*/
+    font-weight: bold; /*Deixa o texto em negrito*/
+    padding: 8px 12px; /*Define a área clicável ao redor do texto*/
+    border-radius: 6px; /*Arredonda os cantos*/
 }
 
-.menu-item {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 8px 12px;
-    border-radius: 6px;
-}
-
-.menu-item:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+.menu-item:hover { /*Entra em ação somente quando o mouse passa em cima*/
+    background-color: rgba(255, 255, 255, 0.2); /*Cria um degrade*/ 
 }
 
 #topbar {
     background-color: #1D3273;
     height: 100px;
     width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
+    position: fixed; /*Faz a barra ficar presa, mesmo com muitos elementos na tabela, ela fica presa em cima*/
+    top: 0; /* Significa para deixar o elemento no topo da janela, mesmo sendo 0 não pode tirar pra ele poder ficar centralizado*/
+    left: 0; /*Significa para enconstar mais a esquerda da janela*/
+    z-index: 1000; /*Faz a barra ficar na frente de todos os outros elementos*/
     display: flex;
-    align-items: center;
+    align-items: center; /*Faz os itens dentro da div se centralizarem*/
 }
 
 #titulo{
-    margin-top: 145px;
+    margin-top: 145px; /*Como a barra é fixa, o título fica abaixo do container*/
     margin-bottom: 50px;
     text-align: center;
     font-family: "Google Sans", sans-serif;
     color: #1D3273;
 }
 
-.icon-camera {
+.icon-camera { /*Pega o elemento específico da câmera e define um tamanho*/
     font-size: 26px;
 }
 
@@ -158,12 +159,12 @@ body {
     position: absolute;
     top: 28px;
     left: 10%;
-    transform: translateX(-50%);
-    z-index: 10000; 
+    transform: translateX(-50%); /*Move a largura da div para a esquerda*/
+    z-index: 10000; /*Faz a div da logo ficar na frente de todos os outros elementos*/
 }
 
-#logo img {
-    width: 145px;
+#logo img { /*Isso é um seletor descendente, que pega apenas a imagem da div*/
+    width: 145px; /*Define o tamanho*/
     height: auto;
     display: block;
 }
@@ -171,48 +172,43 @@ body {
 #perfil {
     position: absolute;
     top: -15px;
-    right: 75px;
-    z-index: 10000; 
+    right: 75px; /*Com isso a imagem de perfil fica no canto direito*/
+    z-index: 10000; /*Deixa ele na frente dos outros elementos*/
 }
 
-#perfil img {
-    width: 135px;
+#perfil img { /*Seletor descendente, pega apenas o que esta dentro*/
+    width: 135px; /*Define o tamanho*/
     height: auto;
 }
 
-.menu-topbar {
-    display: flex;
-    gap: 20px;
-    margin-left: 40px;
-}
-
-.table-container {
-    display: flex;
+.table-container { 
+    display: flex; /*Deixa a tabela flexivel, para ela ir aumentado de tamanho confome novas informações*/
     justify-content: center;
     margin: 120px auto;
     margin-top: 50px;
 }
 
-body::-webkit-scrollbar {
+body::-webkit-scrollbar { /*Não procura nenhum elemento, apenas a barra de rolagem*/
     display: none;
 }
 
 .tabela-estoque {
     width: 60%;
     border: 2px solid #F28705;
-    border-radius: 12px;
+    border-radius: 12px; /*Deixa os contaos arredondados*/
     overflow: hidden;
     border-collapse: separate;
     border-spacing: 0;
 }
 
 .tabela-estoque th,
-.tabela-estoque td {
+.tabela-estoque td { /*Pega todas as linhas e colunas para receberem o mesmo estilo*/
     border-bottom: 1px solid #ddd;
     padding: 10px;
 }
 
-.dropdown-item.sair:hover {
+.dropdown-item.sair:hover { /*Quando o mouse passa sobre um elemento que possui as duas classes ao mesmo tempo, então
+                              somente o botao "Sair" fica escuro*/
     background-color: #0f1e3d;
     color: white;
 }
