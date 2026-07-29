@@ -1,28 +1,28 @@
 /* CONFIGURAÇÕES PARA TELA DE LOGIN */
 
-body {
+body { /* Deixa definido a página inteira*/
   margin: 0;
   background-color:#F0F1F2;
-  font-family: "Google Sans", sans-serif;
+  font-family: "Google Sans", sans-serif; /*Tem que especificar que é a do Google*/
 }
 
-#login-body{
+#login-body{ /*Ele é um seletor mais específico para a página, então ele sobrescreve o body*/
   background-color:#1D3273;
-  overflow: hidden;
-  font-family: sans-serif
+  overflow: hidden; /*Ele controla o que acontece quando algum elemento ultrapassa os limites da tela (nesse caso, tudo que passar da tela será escondido)*/
+  font-family: "Google Sans", sans-serif
 }
 
-#titulo-login{
-  margin-top: 0px;
-  margin-bottom: 25px;
-  font-family: sans-serif;
+#titulo-login{ 
+  margin-top: 0px; /* Remove espaço acima do título*/
+  margin-bottom: 25px; /* Cria um espaço entre o título e o card */
+  font-family: "Google Sans", sans-serif;
 }
 
 #titulo-login h2{
   margin-top: 0px;
-  font-size: 1rem;
-  font-weight: 300;
-  letter-spacing: 4px;
+  font-size: 1rem; /*Tamanho baseado na fonte principal da página*/
+  font-weight: 300; /*Define a espressura da página, nesse caso o 300 é fino*/
+  letter-spacing: 4px; /*Aumenta o espaço entre as letras*/
   margin-bottom: 8px;
   color: #F0F1F2;
 }
