@@ -6,3 +6,13 @@ Dados não foram enviados ou esta incorreto
 
 404 - NOT FOUND
 Produto não encontrado
+
+GET
+Ele pede informações do servidos, então ele RECEBE e serve para demonstrar as informações
+
+POST
+Ele envia dados novos para o servidor, sendo o mais seguro do que o GET pois ele faz a requisição de foram
+escondida
+
+DELETE
+Solicita ao servidor a exclusão de alguma informação no banco

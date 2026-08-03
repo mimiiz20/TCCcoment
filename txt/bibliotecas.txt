@@ -4,6 +4,11 @@ Ele cria um site a onde todas as pessoas podem acessar, definindo uma aplicaçã
 RENDER_TEMPLATE
 Função utilizada para abrir arquivos em HTML usando Python;
 
+REDIRECT
+Usado para criar uma nova chamada via GET, para que as informaçoes fiquem 
+já salvas direto, sem a URL trazer algum dado errado. Ele faz uma nova consulta
+no banco de dados e retorna a mesma lista com a nova informação do item
+
 REQUEST
 Recebe as informações do usuário/admin. É nele que utilizamos o GET para receber, 
 e o POST para enviar novas informações;

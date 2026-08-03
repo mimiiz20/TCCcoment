@@ -1,0 +1,23 @@
+AJAX
+É o conceito que permite que o nvageador converse com o servidor em segundo plano
+sem precisar recarregar a página
+
+FETCH
+É a função que executa o AJAX, ele vai até o FLASK e leva os dados do POST ou do GET
+
+ASYNC / AWAIT
+Como a busca pode demorar um pouco, usamos o ASYNC (função assincrona que funciona sem precisar carregar tudo)
+e o AWAIT para mandar o codigo esperar a resposta do servidor chegar antes de mostrar os dados na tela
+
+"O AJAX é o conceito de atualizar partes da tela sem recarregar a página inteira. 
+O fetch() é a função do JavaScript que executa essa comunicação enviando e recebendo dados do nosso 
+backend no Flask. Usamos async/await para que essa requisição rode de forma assíncrona (em segundo plano), 
+aguardando a resposta do servidor chegar sem congelar a navegação do usuário."
+
+?.
+Ele pega o elemento pelo ID, se o elemento não existir ele faz com que nao se quebre o codigo,
+apenas retornando undefined de maneira segura
+
+VALUE
+Utilizamos ele para pegar apenas o conteudo especificado. Sem ele, todas as informaçoes do HTML e do CSS
+viriam juntas
